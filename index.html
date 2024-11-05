@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pokemon-style Market</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="player" class="facing-down"></div>
+        <div id="interaction-prompt">Press E to interact</div>
+        <div id="money-display">Money: $100</div>
+        <div id="inventory-btn">Inventory (I)</div>
+        
+        <div id="shop-interface">
+            <div class="interface-header">
+                <h3>Shop</h3>
+                <button class="close-btn">✕</button>
+            </div>
+            <div class="item-list" id="shop-items">
+                <!-- Shop items will be populated here -->
+            </div>
+        </div>
+
+        <div id="inventory-interface">
+            <div class="interface-header">
+                <h3>Inventory</h3>
+                <button class="close-btn">✕</button>
+            </div>
+            <div class="item-list" id="inventory-items">
+                <!-- Inventory items will be populated here -->
+            </div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+    <script src="shop.js"></script>
+</body>
+</html>

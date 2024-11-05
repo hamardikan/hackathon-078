@@ -26,6 +26,11 @@ body {
 }
 
 #player {
+    transition: left 160ms linear, top 160ms linear;
+    image-rendering: pixelated;
+}
+
+#player {
     width: 32px;
     height: 32px;
     position: absolute;
@@ -252,3 +257,4 @@ body {
     margin: 10px 0;
     text-align: center;
 }
+

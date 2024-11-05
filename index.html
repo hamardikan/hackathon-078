@@ -30,6 +30,19 @@
                 <!-- Inventory items will be populated here -->
             </div>
         </div>
+
+        <div id="atm-interface">
+            <div class="interface-header">
+                <h3>ATM</h3>
+                <button class="close-btn">✕</button>
+            </div>
+            <div class="atm-balance">Bank Balance: $<span id="bank-balance">0</span></div>
+            <input type="number" id="atm-amount" class="atm-input" placeholder="Enter amount">
+            <div style="display: flex; justify-content: center; gap: 10px;">
+                <button class="atm-btn" onclick="withdraw()">Withdraw</button>
+                <button class="atm-btn" onclick="deposit()">Deposit</button>
+            </div>
+        </div>
     </div>
     <script src="game.js"></script>
     <script src="shop.js"></script>

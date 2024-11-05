@@ -32,6 +32,7 @@ const shopItems = [
 
 let inventory = [];
 let playerMoney = 100;
+let bankBalance = 1000; // Starting bank balance
 let nearStall = null;
 
 const shopInterface = document.getElementById('shop-interface');
@@ -43,7 +44,7 @@ function updateMoneyDisplay() {
 }
 
 function openShop() {
-    if (!nearStall) return;
+    if (!nearStall || nearStall.type !== 'shop') return;
 
     const shopItemsContainer = document.getElementById('shop-items');
     shopItemsContainer.innerHTML = '';
@@ -100,6 +101,55 @@ function openInventory() {
     inventoryInterface.style.display = 'block';
 }
 
+function openATM() {
+    if (!nearStall || nearStall.type !== 'atm') return;
+    
+    document.getElementById('bank-balance').textContent = bankBalance;
+    atmInterface.style.display = 'block';
+}
+
+function deposit() {
+    const amount = parseInt(document.getElementById('atm-amount').value);
+    if (isNaN(amount) || amount <= 0) {
+        alert('Please enter a valid amount');
+        return;
+    }
+    
+    if (amount > playerMoney) {
+        alert('You don\'t have enough money to deposit this amount');
+        return;
+    }
+
+    playerMoney -= amount;
+    bankBalance += amount;
+    updateMoneyDisplay();
+    document.getElementById('bank-balance').textContent = bankBalance;
+    document.getElementById('atm-amount').value = '';
+
+    showTransactionEffect(`Deposited $${amount}!`, '#4CAF50');
+}
+
+function withdraw() {
+    const amount = parseInt(document.getElementById('atm-amount').value);
+    if (isNaN(amount) || amount <= 0) {
+        alert('Please enter a valid amount');
+        return;
+    }
+    
+    if (amount > bankBalance) {
+        alert('Insufficient funds in bank account');
+        return;
+    }
+
+    playerMoney += amount;
+    bankBalance -= amount;
+    updateMoneyDisplay();
+    document.getElementById('bank-balance').textContent = bankBalance;
+    document.getElementById('atm-amount').value = '';
+
+    showTransactionEffect(`Withdrew $${amount}!`, '#4CAF50');
+}
+
 function buyItem(itemId) {
     const item = shopItems.find(i => i.id === itemId);
     if (item && playerMoney >= item.price) {
@@ -107,19 +157,7 @@ function buyItem(itemId) {
         inventory.push({...item});
         updateMoneyDisplay();
         
-        // Add purchase effect
-        const effect = document.createElement('div');
-        effect.style.cssText = `
-            position: absolute;
-            color: #4CAF50;
-            font-weight: bold;
-            animation: float-up 1s ease-out;
-            z-index: 5;
-        `;
-        effect.textContent = 'Item purchased!';
-        document.body.appendChild(effect);
-        
-        setTimeout(() => effect.remove(), 1000);
+        showTransactionEffect('Item purchased!', '#4CAF50');
         
         openShop(); // Refresh shop interface
     }
@@ -130,48 +168,59 @@ function useItem(itemId) {
     if (itemIndex !== -1) {
         const item = inventory[itemIndex];
         
-        // Add use effect
-        const effect = document.createElement('div');
-        effect.style.cssText = `
-            position: absolute;
-            color: #4CAF50;
-            font-weight: bold;
-            animation: float-up 1s ease-out;
-            z-index: 5;
-        `;
-        effect.textContent = `Used ${item.name}!`;
-        document.body.appendChild(effect);
+        showTransactionEffect(`Used ${item.name}!`, '#4CAF50');
         
-        setTimeout(() => effect.remove(), 1000);
-        
-        // Remove item from inventory
         inventory.splice(itemIndex, 1);
         openInventory(); // Refresh inventory interface
     }
+}
+
+function showTransactionEffect(text, color) {
+    const effect = document.createElement('div');
+    effect.style.cssText = `
+        position: absolute;
+        color: ${color};
+        font-weight: bold;
+        animation: float-up 1s ease-out;
+        z-index: 5;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    `;
+    effect.textContent = text;
+    document.body.appendChild(effect);
+    
+    setTimeout(() => effect.remove(), 1000);
 }
 
 // Close buttons
 document.querySelectorAll('.close-btn').forEach(btn => {
     btn.onclick = function() {
         this.parentElement.parentElement.style.display = 'none';
+        if (this.parentElement.parentElement === atmInterface) {
+            document.getElementById('atm-amount').value = '';
+        }
     };
 });
 
-// Add floating animation style
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes float-up {
-        0% {
-            transform: translate(-50%, -50%);
-            opacity: 1;
-        }
-        100% {
-            transform: translate(-50%, -100%);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
-
 // Initialize money display
 updateMoneyDisplay();
+
+// Add floating animation style if not already added
+if (!document.getElementById('float-animation')) {
+    const style = document.createElement('style');
+    style.id = 'float-animation';
+    style.textContent = `
+        @keyframes float-up {
+            0% {
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -100%);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}

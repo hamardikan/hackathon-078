@@ -25,6 +25,8 @@ body {
     background: #769c52;
 }
 
+/* Remove the previous player-related CSS and replace with these new styles */
+
 #player {
     width: 32px;
     height: 32px;
@@ -44,40 +46,68 @@ body {
     transform: translate(-50%, -50%);
 }
 
-#player.facing-up::before {
-    border-bottom: 16px solid #ff5555;
+/* Up direction - 3 states */
+#player.facing-up.stand::before {
+    border-bottom: 16px solid #ff5555;  /* Red */
     transform: translate(-50%, -80%);
 }
 
-#player.facing-up.step::before {
-    border-bottom: 16px solid #ff8888;
+#player.facing-up.step1::before {
+    border-bottom: 16px solid #ff8833;  /* Orange */
+    transform: translate(-50%, -80%);
 }
 
-#player.facing-down::before {
-    border-top: 16px solid #ff5555;
+#player.facing-up.step2::before {
+    border-bottom: 16px solid #ffbb33;  /* Light Orange */
+    transform: translate(-50%, -80%);
+}
+
+/* Down direction - 3 states */
+#player.facing-down.stand::before {
+    border-top: 16px solid #33aa33;  /* Green */
     transform: translate(-50%, -20%);
 }
 
-#player.facing-down.step::before {
-    border-top: 16px solid #ff8888;
+#player.facing-down.step1::before {
+    border-top: 16px solid #44cc44;  /* Light Green */
+    transform: translate(-50%, -20%);
 }
 
-#player.facing-left::before {
-    border-right: 16px solid #ff5555;
+#player.facing-down.step2::before {
+    border-top: 16px solid #66ee66;  /* Lighter Green */
+    transform: translate(-50%, -20%);
+}
+
+/* Left direction - 3 states */
+#player.facing-left.stand::before {
+    border-right: 16px solid #3333ff;  /* Blue */
     transform: translate(-80%, -50%);
 }
 
-#player.facing-left.step::before {
-    border-right: 16px solid #ff8888;
+#player.facing-left.step1::before {
+    border-right: 16px solid #5555ff;  /* Light Blue */
+    transform: translate(-80%, -50%);
 }
 
-#player.facing-right::before {
-    border-left: 16px solid #ff5555;
+#player.facing-left.step2::before {
+    border-right: 16px solid #7777ff;  /* Lighter Blue */
+    transform: translate(-80%, -50%);
+}
+
+/* Right direction - 3 states */
+#player.facing-right.stand::before {
+    border-left: 16px solid #aa33aa;  /* Purple */
     transform: translate(-20%, -50%);
 }
 
-#player.facing-right.step::before {
-    border-left: 16px solid #ff8888;
+#player.facing-right.step1::before {
+    border-left: 16px solid #cc44cc;  /* Light Purple */
+    transform: translate(-20%, -50%);
+}
+
+#player.facing-right.step2::before {
+    border-left: 16px solid #ee66ee;  /* Lighter Purple */
+    transform: translate(-20%, -50%);
 }
 
 .stall {
@@ -200,4 +230,55 @@ body {
     border-radius: 5px;
     z-index: 3;
     cursor: pointer;
+}
+
+/* Add these new styles */
+.atm-stall {
+    background: #4a90e2 !important;  /* Blue color for ATM */
+    border: 2px solid #357abd !important;
+}
+
+.atm-stall::after {
+    background: #357abd !important;
+}
+
+#atm-interface {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 4;
+    width: 300px;
+}
+
+.atm-input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.atm-btn {
+    background: #4a90e2;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.atm-btn:hover {
+    background: #357abd;
+}
+
+.atm-balance {
+    font-size: 1.2em;
+    margin: 10px 0;
+    text-align: center;
 }

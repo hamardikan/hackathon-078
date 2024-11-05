@@ -12,20 +12,18 @@ body {
     width: 480px;
     height: 320px;
     position: relative;
-    background: #98d668;
+    background: whitesmoke;
     overflow: hidden;
     image-rendering: pixelated;
-    border: 4px solid #2d5a27;
+    border: 4px solid black;
 }
 
 .tile {
     width: 32px;
     height: 32px;
     position: absolute;
-    background: #769c52;
+    background: white;
 }
-
-/* Remove the previous player-related CSS and replace with these new styles */
 
 #player {
     width: 32px;
@@ -33,102 +31,84 @@ body {
     position: absolute;
     transition: all 0.2s;
     z-index: 2;
-}
-
-#player::before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    border: 8px solid transparent;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 /* Up direction - 3 states */
-#player.facing-up.stand::before {
-    border-bottom: 16px solid #ff5555;  /* Red */
-    transform: translate(-50%, -80%);
+#player.facing-up.stand {
+    background-image: url('assets/char/sprite-up-stand.png');
 }
 
-#player.facing-up.step1::before {
-    border-bottom: 16px solid #ff8833;  /* Orange */
-    transform: translate(-50%, -80%);
+#player.facing-up.step1 {
+    background-image: url('assets/char/sprite-up-walk1.png');
 }
 
-#player.facing-up.step2::before {
-    border-bottom: 16px solid #ffbb33;  /* Light Orange */
-    transform: translate(-50%, -80%);
+#player.facing-up.step2 {
+    background-image: url('assets/char/sprite-up-walk2.png');
 }
 
 /* Down direction - 3 states */
-#player.facing-down.stand::before {
-    border-top: 16px solid #33aa33;  /* Green */
-    transform: translate(-50%, -20%);
+#player.facing-down.stand {
+    background-image: url('assets/char/sprite-down-stand.png');
 }
 
-#player.facing-down.step1::before {
-    border-top: 16px solid #44cc44;  /* Light Green */
-    transform: translate(-50%, -20%);
+#player.facing-down.step1 {
+    background-image: url('assets/char/sprite-down-walk1.png');
 }
 
-#player.facing-down.step2::before {
-    border-top: 16px solid #66ee66;  /* Lighter Green */
-    transform: translate(-50%, -20%);
+#player.facing-down.step2 {
+    background-image: url('assets/char/sprite-down-walk2.png');
 }
 
 /* Left direction - 3 states */
-#player.facing-left.stand::before {
-    border-right: 16px solid #3333ff;  /* Blue */
-    transform: translate(-80%, -50%);
+#player.facing-left.stand {
+    background-image: url('assets/char/sprite-left-stand.png');
 }
 
-#player.facing-left.step1::before {
-    border-right: 16px solid #5555ff;  /* Light Blue */
-    transform: translate(-80%, -50%);
+#player.facing-left.step1 {
+    background-image: url('assets/char/sprite-left-walk1.png');
 }
 
-#player.facing-left.step2::before {
-    border-right: 16px solid #7777ff;  /* Lighter Blue */
-    transform: translate(-80%, -50%);
+#player.facing-left.step2 {
+    background-image: url('assets/char/sprite-left-walk2.png');
 }
 
 /* Right direction - 3 states */
-#player.facing-right.stand::before {
-    border-left: 16px solid #aa33aa;  /* Purple */
-    transform: translate(-20%, -50%);
+#player.facing-right.stand {
+    background-image: url('assets/char/sprite-right-stand.png');
 }
 
-#player.facing-right.step1::before {
-    border-left: 16px solid #cc44cc;  /* Light Purple */
-    transform: translate(-20%, -50%);
+#player.facing-right.step1 {
+    background-image: url('assets/char/sprite-right-walk1.png');
 }
 
-#player.facing-right.step2::before {
-    border-left: 16px solid #ee66ee;  /* Lighter Purple */
-    transform: translate(-20%, -50%);
+#player.facing-right.step2 {
+    background-image: url('assets/char/sprite-right-walk2.png');
 }
 
 .stall {
-    width: 48px;
-    height: 48px;
+    width: 32px;
+    height: 64px;
     position: absolute;
-    background: #8B4513;
     z-index: 1;
-    border: 2px solid #654321;
+    background-size: contain;
+    background-repeat: no-repeat;
     box-sizing: border-box;
 }
 
-.stall::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 10px;
-    background: #A0522D;
+.vending-machine {
+    background-image: url('./assets/buildings/vending-machine.png');  /* Add your potion shop image here */
 }
+
+.coffee-machine {
+    background-image: url('./assets/buildings/coffee-machine.png');  /* Add your equipment shop image here */
+}
+
+.atm-stall {
+    background-image: url('./assets/buildings/atm-machine.png');  /* Add your ATM image here */
+}
+
 
 #interaction-prompt {
     display: none;
@@ -230,16 +210,6 @@ body {
     border-radius: 5px;
     z-index: 3;
     cursor: pointer;
-}
-
-/* Add these new styles */
-.atm-stall {
-    background: #4a90e2 !important;  /* Blue color for ATM */
-    border: 2px solid #357abd !important;
-}
-
-.atm-stall::after {
-    background: #357abd !important;
 }
 
 #atm-interface {

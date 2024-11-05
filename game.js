@@ -27,14 +27,18 @@ for (let y = 0; y < 10; y++) {
 
 // Add market stalls and ATM
 const stalls = [
-    { x: 3, y: 2, items: [1, 2], type: 'shop' },  // Sells potions and scrolls
-    { x: 11, y: 3, items: [3, 4], type: 'shop' }, // Sells rings and shields
+    { x: 3, y: 2, items: [1, 2], type: 'shop', shopType: 'vending-machine' },  // Sells potions and scrolls
+    { x: 11, y: 3, items: [3, 4], type: 'shop', shopType: 'coffee-machine' }, // Sells rings and shields
     { x: 7, y: 7, type: 'atm' }  // ATM stall
 ];
 
 stalls.forEach(stall => {
     const element = document.createElement('div');
-    element.className = stall.type === 'atm' ? 'stall atm-stall' : 'stall';
+    if (stall.type === 'atm') {
+        element.className = 'stall atm-stall';
+    } else {
+        element.className = `stall ${stall.shopType}`;
+    }
     element.style.left = (stall.x * 32) + 'px';
     element.style.top = (stall.y * 32) + 'px';
     container.appendChild(element);

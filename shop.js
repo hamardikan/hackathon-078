@@ -2,31 +2,31 @@
 const shopItems = [
     { 
         id: 1, 
-        name: 'Health Potion', 
-        price: 25, 
-        description: 'Restores 50 HP',
-        type: 'potion'
+        name: 'Dark Chocolate', 
+        price: 35, 
+        description: 'Rich and intense coffee blend',
+        type: 'coffee-dark'
     },
     { 
         id: 2, 
-        name: 'Magic Scroll', 
+        name: 'Matcha Latte', 
         price: 40, 
-        description: 'Increases MP by 30',
-        type: 'scroll'
+        description: 'Green tea with steamed milk',
+        type: 'coffee-matcha'
     },
     { 
         id: 3, 
-        name: 'Power Ring', 
-        price: 75, 
-        description: 'Boosts attack power',
-        type: 'ring'
+        name: 'Cheetos', 
+        price: 25, 
+        description: 'Crunchy cheese-flavored snack',
+        type: 'snack-cheetos'
     },
     { 
         id: 4, 
-        name: 'Shield', 
-        price: 60, 
-        description: 'Improves defense',
-        type: 'shield'
+        name: 'Chocolate Bar', 
+        price: 30, 
+        description: 'Sweet milk chocolate treat',
+        type: 'snack-choco'
     }
 ];
 

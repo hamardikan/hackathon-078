@@ -1,21 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UFT-8">
-        <meta http-equiv="X-UA-Competible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>website with login and registration</title>
-   <link rel="stylesheet" href="landing-page.css">
-    </head>
-    <body>
-        <header>
-            <h2 class="logo">logo</h2>
-            <nav class="navigation">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <button class= "buttonlogin-popup">login</button>
-            </nav>
-        </header>
-        <script src="landing-page.js"></script>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rehat di Hacktiv8</title>
+    <link rel="stylesheet" href="landing-page.css">
+</head>
+<body>
+    <header>
+        <h2 class="logo">Rehat!</h2>
+        <nav class="navigation">
+            <span id="welcome-message" class="welcome-text"></span>
+            <button class="btnLogin-popup" id="mainButton">Login</button>
+            <button class="btnLogout" id="logoutButton">Logout</button>
+        </nav>
+    </header>
+
+    <div class="wrapper">
+        <span class="icon-close">×</span>
+        
+        <div class="form-box login">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="input-box">
+                    <input type="text" id="loginUsername" required>
+                    <label>Username</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="loginPassword" required>
+                    <label>Password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox"> Remember me</label>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="login-register">
+                    <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-box register">
+            <h2>Register</h2>
+            <form id="registerForm">
+                <div class="input-box">
+                    <input type="text" id="registerUsername" required>
+                    <label>Username</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="registerPassword" required>
+                    <label>Password</label>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="confirmPassword" required>
+                    <label>Confirm Password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox" required> I agree to the terms & conditions</label>
+                </div>
+                <button type="submit" class="btn">Register</button>
+                <div class="login-register">
+                    <p>Already have an account? <a href="#" class="login-link">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="message"></div>
+
+    <script src="landing-page.js"></script>
+    <script>
+        // Check if user is logged in
+        const currentUser = sessionStorage.getItem('currentUser');
+        const rememberedUser = localStorage.getItem('rememberedUser');
+        
+        if (!currentUser && !rememberedUser) {
+            window.location.replace('landing-page.html');
+        }
+    </script>
+</body>
 </html>

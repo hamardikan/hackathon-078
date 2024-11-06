@@ -70,13 +70,30 @@
 
     <script src="landing-page.js"></script>
     <script>
-        // Check if user is logged in
-        const currentUser = sessionStorage.getItem('currentUser');
-        const rememberedUser = localStorage.getItem('rememberedUser');
-        
-        if (!currentUser && !rememberedUser) {
-            window.location.replace('landing-page.html');
+        // Safe storage check
+        function checkAuth() {
+            try {
+                const sessionUser = sessionStorage.getItem('currentUser');
+                const rememberedUser = localStorage.getItem('rememberedUser');
+                
+                if (!sessionUser && !rememberedUser) {
+                    window.location.href = 'landing-page.html';
+                } else {
+                    // Validate JSON format
+                    const user = sessionUser ? JSON.parse(sessionUser) : JSON.parse(rememberedUser);
+                    if (!user || !user.username) {
+                        // Invalid user data
+                        sessionStorage.removeItem('currentUser');
+                        localStorage.removeItem('rememberedUser');
+                        window.location.href = 'landing-page.html';
+                    }
+                }
+            } catch (e) {
+                console.error('Auth check error:', e);
+                window.location.href = 'landing-page.html';
+            }
         }
+        checkAuth();
     </script>
 </body>
 </html>

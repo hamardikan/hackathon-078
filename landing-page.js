@@ -11,21 +11,45 @@ const iconClose = document.querySelector('.icon-close');
 const message = document.getElementById('message');
 const rememberMeCheckbox = document.querySelector('input[type="checkbox"]');
 
+// Safe storage operations
+function safeGetItem(storage, key) {
+    try {
+        const item = storage.getItem(key);
+        if (!item) return null;
+        return JSON.parse(item);
+    } catch (e) {
+        console.error('Storage error:', e);
+        return null;
+    }
+}
+
+function safeSetItem(storage, key, value) {
+    try {
+        storage.setItem(key, JSON.stringify(value));
+        return true;
+    } catch (e) {
+        console.error('Storage error:', e);
+        return false;
+    }
+}
+
+// Check if user is logged in
+function isUserLoggedIn() {
+    const sessionUser = safeGetItem(sessionStorage, 'currentUser');
+    const rememberedUser = safeGetItem(localStorage, 'rememberedUser');
+    return sessionUser || rememberedUser;
+}
+
 // UI State Management
 function updateUIState() {
-    const rememberedUser = localStorage.getItem('rememberedUser');
-    const currentUser = sessionStorage.getItem('currentUser');
+    const user = isUserLoggedIn();
     
-    const userInfo = rememberedUser || currentUser;
-    
-    if (userInfo) {
-        const user = JSON.parse(userInfo);
+    if (user) {
         welcomeMessage.textContent = `Hello, ${user.username}!`;
         mainButton.textContent = 'Play Game';
         mainButton.classList.add('play-game');
         logoutButton.style.display = 'block';
         
-        // Update Play Game button behavior
         mainButton.onclick = function(e) {
             e.preventDefault();
             window.location.href = 'index.html';
@@ -55,7 +79,7 @@ loginForm.addEventListener('submit', (e) => {
     const password = document.getElementById('loginPassword').value;
     const rememberMe = rememberMeCheckbox.checked;
 
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const users = safeGetItem(localStorage, 'users') || [];
     const user = users.find(u => u.username === username && u.password === password);
 
     if (user) {
@@ -64,12 +88,10 @@ loginForm.addEventListener('submit', (e) => {
             loginTime: new Date().toISOString()
         };
 
-        // Store in session storage
-        sessionStorage.setItem('currentUser', JSON.stringify(userData));
+        safeSetItem(sessionStorage, 'currentUser', userData);
 
-        // If remember me is checked, store in local storage
         if (rememberMe) {
-            localStorage.setItem('rememberedUser', JSON.stringify(userData));
+            safeSetItem(localStorage, 'rememberedUser', userData);
         }
         
         showMessage('Login successful!', 'success');
@@ -93,7 +115,7 @@ registerForm.addEventListener('submit', (e) => {
         return;
     }
 
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const users = safeGetItem(localStorage, 'users') || [];
     if (users.some(user => user.username === username)) {
         showMessage('Username already exists!', 'error');
         return;
@@ -105,7 +127,7 @@ registerForm.addEventListener('submit', (e) => {
         createdAt: new Date().toISOString()
     });
     
-    localStorage.setItem('users', JSON.stringify(users));
+    safeSetItem(localStorage, 'users', users);
     showMessage('Registration successful! Please login.', 'success');
     registerForm.reset();
     wrapper.classList.remove('active');
@@ -116,11 +138,21 @@ registerLink.addEventListener('click', () => wrapper.classList.add('active'));
 loginLink.addEventListener('click', () => wrapper.classList.remove('active'));
 iconClose.addEventListener('click', () => wrapper.classList.remove('active-popup', 'active'));
 logoutButton.addEventListener('click', () => {
-    sessionStorage.removeItem('currentUser');
-    localStorage.removeItem('rememberedUser');
-    showMessage('Logged out successfully!', 'success');
-    updateUIState();
+    try {
+        sessionStorage.removeItem('currentUser');
+        localStorage.removeItem('rememberedUser');
+        showMessage('Logged out successfully!', 'success');
+        updateUIState();
+    } catch (e) {
+        console.error('Logout error:', e);
+    }
 });
 
 // Initialize
-document.addEventListener('DOMContentLoaded', updateUIState);
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        updateUIState();
+    } catch (e) {
+        console.error('Initialization error:', e);
+    }
+});

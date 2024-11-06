@@ -30,14 +30,14 @@ for (let y = 0; y < 10; y++) {
     }
 }
 
-// Stalls setup remains the same
+// Stalls setup
 const stalls = [
     { x: 3, y: 2, items: [4, 5, 6], type: 'shop', shopType: 'vending-machine' },
     { x: 11, y: 3, items: [1, 2, 3], type: 'shop', shopType: 'coffee-machine' },
     { x: 7, y: 7, type: 'atm' }
 ];
 
-// Setup stalls (remains the same)
+// Setup stalls 
 stalls.forEach(stall => {
     const element = document.createElement('div');
     if (stall.type === 'atm') {
@@ -76,7 +76,6 @@ function resetPlayerStance() {
     player.className = `facing-${facing} stand`;
 }
 
-// Rest of the utility functions remain the same
 function checkStallProximity() {
     const playerTileX = Math.floor(playerX / 32);
     const playerTileY = Math.floor(playerY / 32);
@@ -235,8 +234,8 @@ document.addEventListener('keyup', (e) => {
 
 function adjustGameScale() {
     const container = document.getElementById('game-container');
-    const gameWidth = 480;  // Your original game width
-    const gameHeight = 320; // Your original game height
+    const gameWidth = 480;  
+    const gameHeight = 320; 
     
     // Get available space
     const availableHeight = window.innerHeight * 0.85; // 85% of screen height

@@ -299,3 +299,12 @@ document.addEventListener('visibilitychange', () => {
         handleResponsiveLayout();
     }
 });
+
+// Get return button element
+const returnBtn = document.getElementById('return-btn');
+
+// Add click event listener for return button
+returnBtn.addEventListener('click', () => {
+    // Redirect to landing page
+    window.location.href = 'landing-page.html';
+});

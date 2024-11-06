@@ -1,34 +1,60 @@
 // Game state
 const shopItems = [
-    { 
-        id: 1, 
-        name: 'Dark Chocolate', 
-        price: 35, 
-        description: 'Rich and intense coffee blend',
-        type: 'coffee-dark'
+    {
+      id: 1,
+      name: 'Dark Chocolate Mocha',
+      price: 4.50,
+      description: 'Rich mocha blended with dark chocolate',
+      type: 'coffee-dark',
+      category: 'specialty',
+      inStock: true
     },
-    { 
-        id: 2, 
-        name: 'Matcha Latte', 
-        price: 40, 
-        description: 'Green tea with steamed milk',
-        type: 'coffee-matcha'
+    {
+      id: 2,
+      name: 'Café Latte',
+      price: 3.75,
+      description: 'Espresso with steamed milk and light foam',
+      type: 'coffee-latte',
+      category: 'classic',
+      inStock: true
     },
-    { 
-        id: 3, 
-        name: 'Cheetos', 
-        price: 25, 
-        description: 'Crunchy cheese-flavored snack',
-        type: 'snack-cheetos'
+    {
+      id: 3,
+      name: 'Matcha Green Tea Latte',
+      price: 4.25,
+      description: 'Traditional matcha green tea with steamed milk',
+      type: 'coffee-matcha',
+      category: 'specialty',
+      inStock: true
     },
-    { 
-        id: 4, 
-        name: 'Chocolate Bar', 
-        price: 30, 
-        description: 'Sweet milk chocolate treat',
-        type: 'snack-choco'
+    {
+      id: 4,
+      name: 'Cheetos Crunchy',
+      price: 1.50,
+      description: 'Crunchy cheese-flavored snack',
+      type: 'snack-cheetos',
+      category: 'snacks',
+      inStock: true
+    },
+    {
+      id: 5,
+      name: 'Chocolate Bar',
+      price: 2.00,
+      description: 'Classic milk chocolate bar',
+      type: 'snack-chocoa',
+      category: 'candy',
+      inStock: true
+    },
+    {
+      id: 6,
+      name: 'Premium Cigarette',
+      price: 12.00,
+      description: 'Hand-rolled premium tobacco cigar',
+      type: 'snack-cigar',
+      category: 'tobacco',
+      inStock: true
     }
-];
+  ];
 
 let inventory = [];
 let playerMoney = 100;

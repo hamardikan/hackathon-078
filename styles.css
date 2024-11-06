@@ -179,19 +179,25 @@ body {
 
 /* Coffee Icons */
 .coffee-dark { 
-    background-image: url('./assets/coffee/coffee-darkchocolate.png');
+    background-image: url('./assets/buildings/coffee/coffee-darkchocolate.png');
 }
 .coffee-matcha { 
-    background-image: url('./assets/coffee/coffee-matcha.png');
+    background-image: url('./assets/buildings/coffee/coffee-matcha.png');
 }
-
+.coffee-latte {
+    background-image: url('./assets/buildings/coffee/coffee-latte.png');
+}
 /* Snack Icons */
 .snack-cheetos { 
-    background-image: url('./assets/vending/vending-cheetos.png');
+    background-image: url('./assets/buildings/vending/vending-cheetos.png');
 }
 .snack-choco { 
-    background-image: url('./assets/vending/vending-choco.png');
+    background-image: url('./assets/buildings/vending/vending-choco.png');
 }
+.snack-cigar {
+    background-image: url('./assets/buildings/vending/vending-cigar.png');
+}
+
 .buy-btn, .use-btn {
     background: #4CAF50;
     border: none;

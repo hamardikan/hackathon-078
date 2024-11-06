@@ -32,8 +32,8 @@ for (let y = 0; y < 10; y++) {
 
 // Stalls setup remains the same
 const stalls = [
-    { x: 3, y: 2, items: [3, 4], type: 'shop', shopType: 'vending-machine' },
-    { x: 11, y: 3, items: [1, 2], type: 'shop', shopType: 'coffee-machine' },
+    { x: 3, y: 2, items: [4, 5, 6], type: 'shop', shopType: 'vending-machine' },
+    { x: 11, y: 3, items: [1, 2, 3], type: 'shop', shopType: 'coffee-machine' },
     { x: 7, y: 7, type: 'atm' }
 ];
 
@@ -80,9 +80,9 @@ function resetPlayerStance() {
 function checkStallProximity() {
     const playerTileX = Math.floor(playerX / 32);
     const playerTileY = Math.floor(playerY / 32);
-    
-    nearStall = stalls.find(stall => 
-        Math.abs(stall.x - playerTileX) <= 1 && 
+
+    nearStall = stalls.find(stall =>
+        Math.abs(stall.x - playerTileX) <= 1 &&
         Math.abs(stall.y - playerTileY) <= 1
     );
 
@@ -103,7 +103,7 @@ function checkCollision(newX, newY) {
     const playerTileX = Math.floor(newX / 32);
     const playerTileY = Math.floor(newY / 32);
 
-    return stalls.some(stall => 
+    return stalls.some(stall =>
         stall.x === playerTileX && stall.y === playerTileY
     );
 }
@@ -113,7 +113,7 @@ let animationTimer = null;
 
 function move(direction) {
     if (isMoving) return;
-    
+
     let newX = playerX;
     let newY = playerY;
     const step = 32;
@@ -135,7 +135,7 @@ function move(direction) {
 
     if (!checkCollision(newX, newY)) {
         isMoving = true;
-        
+
         // Start walking animation
         animationTimer = setInterval(() => {
             updatePlayerDirection(direction);
@@ -148,7 +148,7 @@ function move(direction) {
 
         // Clear previous timeouts if they exist
         if (moveTimeout) clearTimeout(moveTimeout);
-        
+
         // Set completion timeout
         moveTimeout = setTimeout(() => {
             isMoving = false;
@@ -174,7 +174,7 @@ resetPlayerStance();
 let activeKeys = new Set();
 
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && (shopInterface.style.display === 'block' || 
+    if (e.key === 'Escape' && (shopInterface.style.display === 'block' ||
         inventoryInterface.style.display === 'block' ||
         atmInterface.style.display === 'block')) {
         shopInterface.style.display = 'none';
@@ -226,7 +226,7 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('keyup', (e) => {
     isKeyPressed = false;
     activeKeys.delete(e.key.toLowerCase());
-    
+
     if (activeKeys.size === 0 && !isMoving) {
         resetPlayerStance();
     }

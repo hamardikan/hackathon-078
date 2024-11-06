@@ -41,7 +41,7 @@ const shopItems = [
       name: 'Chocolate Bar',
       price: 2.00,
       description: 'Classic milk chocolate bar',
-      type: 'snack-chocos',
+      type: 'snack-choco',
       category: 'candy',
       inStock: true
     },

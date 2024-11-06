@@ -173,12 +173,30 @@ body {
     height: 24px;
     margin-right: 10px;
     border-radius: 4px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
-.potion { background: #ff6b6b; }
-.scroll { background: #4ecdc4; }
-.ring { background: #ffe66d; }
-.shield { background: #6c5ce7; }
+/* Coffee Icons */
+.coffee-dark { 
+    background-image: url('./assets/buildings/coffee/coffee-darkchocolate.png');
+}
+.coffee-matcha { 
+    background-image: url('./assets/buildings/coffee/coffee-matcha.png');
+}
+.coffee-latte {
+    background-image: url('./assets/buildings/coffee/coffee-latte.png');
+}
+/* Snack Icons */
+.snack-cheetos { 
+    background-image: url('./assets/buildings/vending/vending-cheetos.png');
+}
+.snack-choco { 
+    background-image: url('./assets/buildings/vending/vending-choco.png');
+}
+.snack-cigar {
+    background-image: url('./assets/buildings/vending/vending-cigar.png');
+}
 
 .buy-btn, .use-btn {
     background: #4CAF50;

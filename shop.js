@@ -1,34 +1,60 @@
 // Game state
 const shopItems = [
-    { 
-        id: 1, 
-        name: 'Health Potion', 
-        price: 25, 
-        description: 'Restores 50 HP',
-        type: 'potion'
+    {
+      id: 1,
+      name: 'Dark Chocolate Mocha',
+      price: 4.50,
+      description: 'Rich mocha blended with dark chocolate',
+      type: 'coffee-dark',
+      category: 'specialty',
+      inStock: true
     },
-    { 
-        id: 2, 
-        name: 'Magic Scroll', 
-        price: 40, 
-        description: 'Increases MP by 30',
-        type: 'scroll'
+    {
+      id: 2,
+      name: 'Café Latte',
+      price: 3.75,
+      description: 'Espresso with steamed milk and light foam',
+      type: 'coffee-latte',
+      category: 'classic',
+      inStock: true
     },
-    { 
-        id: 3, 
-        name: 'Power Ring', 
-        price: 75, 
-        description: 'Boosts attack power',
-        type: 'ring'
+    {
+      id: 3,
+      name: 'Matcha Green Tea Latte',
+      price: 4.25,
+      description: 'Traditional matcha green tea with steamed milk',
+      type: 'coffee-matcha',
+      category: 'specialty',
+      inStock: true
     },
-    { 
-        id: 4, 
-        name: 'Shield', 
-        price: 60, 
-        description: 'Improves defense',
-        type: 'shield'
+    {
+      id: 4,
+      name: 'Cheetos Crunchy',
+      price: 1.50,
+      description: 'Crunchy cheese-flavored snack',
+      type: 'snack-cheetos',
+      category: 'snacks',
+      inStock: true
+    },
+    {
+      id: 5,
+      name: 'Chocolate Bar',
+      price: 2.00,
+      description: 'Classic milk chocolate bar',
+      type: 'snack-chocoa',
+      category: 'candy',
+      inStock: true
+    },
+    {
+      id: 6,
+      name: 'Premium Cigarette',
+      price: 12.00,
+      description: 'Hand-rolled premium tobacco cigar',
+      type: 'snack-cigar',
+      category: 'tobacco',
+      inStock: true
     }
-];
+  ];
 
 let inventory = [];
 let playerMoney = 100;

@@ -1,7 +1,7 @@
 // Create audio manager
 class AudioManager {
     constructor() {
-        this.bgm = new Audio('./assets/audio/Aves - Coffee Stop.mp3'); // Add your music file
+        this.bgm = new Audio('./assets/audio/Aves - Coffee Stop.mp3');
         this.bgm.loop = true;
         this.bgm.volume = 0.5; // Set default volume to 50%
         this.isMuted = false;

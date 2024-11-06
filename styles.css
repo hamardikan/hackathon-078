@@ -335,3 +335,116 @@ body {
     cursor: pointer;
     border: none;
 }
+
+.mobile-controls {
+    position: fixed; /* Changed from absolute to fixed */
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Increased z-index to ensure visibility */
+    display: flex; /* Always display flex */
+    justify-content: space-between;
+    padding: 0 20px;
+    pointer-events: auto;
+}
+
+.d-pad {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 75px;
+    padding: 10px;
+}
+
+.d-pad button {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.d-pad .up {
+    top: 5px;
+    left: 55px;
+}
+
+.d-pad .down {
+    bottom: 5px;
+    left: 55px;
+}
+
+.d-pad .left {
+    left: 5px;
+    top: 55px;
+}
+
+.d-pad .right {
+    right: 5px;
+    top: 55px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.action-buttons button {
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Mobile Audio Controls */
+@media screen and (max-width: 768px) {
+    #game-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        border: none;
+    }
+    
+    #audio-controls {
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.8);
+        padding: 10px;
+        border-radius: 20px;
+        z-index: 1001;
+    }
+
+    .mobile-controls {
+        display: flex !important;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+}

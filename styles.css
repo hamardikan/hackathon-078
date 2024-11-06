@@ -515,3 +515,85 @@ body {
         font-size: 14px;
     }
 }
+
+/* Desktop specific styles */
+@media screen and (min-width: 769px) {
+    body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px 0; /* Add padding top and bottom */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #333;
+    }
+
+    #game-container {
+        margin: 20px auto; /* Add margin around the game container */
+        position: relative;
+        width: 480px;
+        height: 320px;
+        background: whitesmoke;
+        overflow: hidden;
+        image-rendering: pixelated;
+        border: 4px solid black;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Hide mobile controls on desktop */
+    .mobile-controls {
+        display: none !important;
+    }
+
+    /* Desktop audio controls positioning */
+    #audio-controls {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.7);
+        padding: 5px 15px;
+        border-radius: 20px;
+        z-index: 1001;
+    }
+
+    /* Make interfaces center properly on desktop */
+    #shop-interface,
+    #inventory-interface,
+    #atm-interface {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+}
+
+/* General styles that apply to both mobile and desktop */
+#game-container {
+    background: whitesmoke;
+}
+
+.tile {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    background: white;
+}
+
+#player {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    z-index: 2;
+}
+
+.stall {
+    width: 32px;
+    height: 64px;
+    position: absolute;
+    z-index: 1;
+}

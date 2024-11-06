@@ -32,8 +32,8 @@ for (let y = 0; y < 10; y++) {
 
 // Stalls setup remains the same
 const stalls = [
-    { x: 3, y: 2, items: [3, 4], type: 'shop', shopType: 'vending-machine' },
-    { x: 11, y: 3, items: [1, 2], type: 'shop', shopType: 'coffee-machine' },
+    { x: 3, y: 2, items: [1, 2], type: 'shop', shopType: 'vending-machine' },
+    { x: 11, y: 3, items: [3, 4], type: 'shop', shopType: 'coffee-machine' },
     { x: 7, y: 7, type: 'atm' }
 ];
 

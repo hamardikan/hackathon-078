@@ -173,25 +173,13 @@ body {
     height: 24px;
     margin-right: 10px;
     border-radius: 4px;
-    background-size: contain;
-    background-repeat: no-repeat;
 }
 
-/* Coffee Icons */
-.coffee-dark { 
-    background-image: url('./assets/coffee/coffee-darkchocolate.png');
-}
-.coffee-matcha { 
-    background-image: url('./assets/coffee/coffee-matcha.png');
-}
+.potion { background: #ff6b6b; }
+.scroll { background: #4ecdc4; }
+.ring { background: #ffe66d; }
+.shield { background: #6c5ce7; }
 
-/* Snack Icons */
-.snack-cheetos { 
-    background-image: url('./assets/vending/vending-cheetos.png');
-}
-.snack-choco { 
-    background-image: url('./assets/vending/vending-choco.png');
-}
 .buy-btn, .use-btn {
     background: #4CAF50;
     border: none;

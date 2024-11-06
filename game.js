@@ -231,3 +231,33 @@ document.addEventListener('keyup', (e) => {
         resetPlayerStance();
     }
 });
+
+//mobile adjust
+// Add this function to your game.js
+function adjustGameScale() {
+    const container = document.getElementById('game-container');
+    const gameWidth = 480;  // Your original game width
+    const gameHeight = 320; // Your original game height
+    
+    // Get available space
+    const availableHeight = window.innerHeight * 0.85; // 85% of screen height
+    const availableWidth = window.innerWidth;
+    
+    // Calculate scale
+    const scaleX = availableWidth / gameWidth;
+    const scaleY = availableHeight / gameHeight;
+    const scale = Math.min(scaleX, scaleY);
+    
+    // Apply scaling
+    container.style.transform = `scale(${scale})`;
+    container.style.transformOrigin = 'top center';
+}
+
+// Call on load and resize
+window.addEventListener('load', adjustGameScale);
+window.addEventListener('resize', adjustGameScale);
+
+// Call after device orientation changes
+window.addEventListener('orientationchange', function() {
+    setTimeout(adjustGameScale, 100);
+});

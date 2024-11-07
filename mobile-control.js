@@ -104,6 +104,6 @@ if (isMobileDevice()) {
     // Handle interface closing with a close button for mobile
     const closeButtons = document.querySelectorAll('.close-btn');
     closeButtons.forEach(btn => {
-        btn.style.padding = '15px'; // Bigger touch target
+        btn.style.padding = '15px'; 
     });
 }

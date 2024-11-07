@@ -17,7 +17,7 @@ let animationInterval = 40; // How often to update animation frames in ms
 // Add CSS transition to player element
 player.style.transition = `left ${moveSpeed}ms linear, top ${moveSpeed}ms linear`;
 
-// Create grid tiles (rest of the grid creation code remains the same)
+// Create grid tiles
 for (let y = 0; y < 10; y++) {
     for (let x = 0; x < 15; x++) {
         if ((x + y) % 2 === 0) {
@@ -30,14 +30,14 @@ for (let y = 0; y < 10; y++) {
     }
 }
 
-// Stalls setup remains the same
+// Stalls setup
 const stalls = [
     { x: 3, y: 2, items: [4, 5, 6], type: 'shop', shopType: 'vending-machine' },
     { x: 11, y: 3, items: [1, 2, 3], type: 'shop', shopType: 'coffee-machine' },
     { x: 7, y: 7, type: 'atm' }
 ];
 
-// Setup stalls (remains the same)
+// Setup stalls 
 stalls.forEach(stall => {
     const element = document.createElement('div');
     if (stall.type === 'atm') {
@@ -50,9 +50,29 @@ stalls.forEach(stall => {
     container.appendChild(element);
 });
 
+function updateZIndices() {
+    const playerTileY = Math.floor(playerY / 32);
+    
+    // Get all stalls
+    const stallElements = document.querySelectorAll('.stall');
+    
+    stallElements.forEach(stallElement => {
+        // Get the stall's y position from its style
+        const stallY = parseInt(stallElement.style.top) / 32;
+        
+        // If player is above/behind the stall (smaller Y value)
+        if (playerTileY <= stallY) {
+            stallElement.style.zIndex = '3'; // Stall appears in front of player
+        } else {
+            stallElement.style.zIndex = '1'; // Stall appears behind player
+        }
+    });
+}
+
 function updatePlayerPosition() {
     player.style.left = playerX + 'px';
     player.style.top = playerY + 'px';
+    updateZIndices(); // Update z-indices when player moves
     checkStallProximity();
 }
 
@@ -76,7 +96,6 @@ function resetPlayerStance() {
     player.className = `facing-${facing} stand`;
 }
 
-// Rest of the utility functions remain the same
 function checkStallProximity() {
     const playerTileX = Math.floor(playerX / 32);
     const playerTileY = Math.floor(playerY / 32);
@@ -161,14 +180,16 @@ function move(direction) {
             }
         }, moveSpeed);
     } else {
-        // Just update the facing direction without moving
+        // Just update the facing direction and z-indices without moving
         updatePlayerDirection(direction);
+        updateZIndices();
     }
 }
 
 // Initialize player position and stance
 updatePlayerPosition();
 resetPlayerStance();
+updateZIndices(); // Initialize z-indices
 
 // Enhanced keyboard controls
 let activeKeys = new Set();
@@ -232,31 +253,24 @@ document.addEventListener('keyup', (e) => {
     }
 });
 
-
 function adjustGameScale() {
     const container = document.getElementById('game-container');
-    const gameWidth = 480;  // Your original game width
-    const gameHeight = 320; // Your original game height
+    const gameWidth = 480;  
+    const gameHeight = 320; 
     
-    // Get available space
-    const availableHeight = window.innerHeight * 0.85; // 85% of screen height
+    const availableHeight = window.innerHeight * 0.85;
     const availableWidth = window.innerWidth;
     
-    // Calculate scale
     const scaleX = availableWidth / gameWidth;
     const scaleY = availableHeight / gameHeight;
     const scale = Math.min(scaleX, scaleY);
     
-    // Apply scaling
     container.style.transform = `scale(${scale})`;
     container.style.transformOrigin = 'top center';
 }
 
-// Call on load and resize
 window.addEventListener('load', adjustGameScale);
 window.addEventListener('resize', adjustGameScale);
-
-// Call after device orientation changes
 window.addEventListener('orientationchange', function() {
     setTimeout(adjustGameScale, 100);
 });
@@ -266,11 +280,9 @@ function handleResponsiveLayout() {
     const gameWidth = 480;
     const gameHeight = 320;
     
-    // Check if mobile
     const isMobile = window.innerWidth <= 768;
     
     if (isMobile) {
-        // Mobile scaling
         const availableHeight = window.innerHeight * 0.85;
         const availableWidth = window.innerWidth;
         
@@ -281,22 +293,25 @@ function handleResponsiveLayout() {
         container.style.transform = `scale(${scale})`;
         container.style.transformOrigin = 'top center';
     } else {
-        // Desktop - reset any scaling
         container.style.transform = 'none';
         container.style.margin = '20px auto';
     }
 }
 
-// Call on important events
 window.addEventListener('load', handleResponsiveLayout);
 window.addEventListener('resize', handleResponsiveLayout);
 window.addEventListener('orientationchange', () => {
     setTimeout(handleResponsiveLayout, 100);
 });
 
-// Optional: Add a check for visibility changes
 document.addEventListener('visibilitychange', () => {
     if (!document.hidden) {
         handleResponsiveLayout();
     }
+});
+
+const returnBtn = document.getElementById('return-btn');
+
+returnBtn.addEventListener('click', () => {
+    window.location.href = 'landing-page.html';
 });

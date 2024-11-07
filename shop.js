@@ -232,7 +232,6 @@ document.querySelectorAll('.close-btn').forEach(btn => {
 // Initialize money display
 updateMoneyDisplay();
 
-// Add floating animation style if not already added
 if (!document.getElementById('float-animation')) {
     const style = document.createElement('style');
     style.id = 'float-animation';

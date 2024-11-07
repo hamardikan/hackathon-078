@@ -336,8 +336,32 @@ body {
     border: none;
 }
 
+#return-btn {
+    position: absolute;
+    top: 10px;
+    right: 180px; /* Position it to the left of money display */
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 3;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#return-btn:hover {
+    background: rgba(255, 0, 0, 0.7);
+}
+
 /* Reset mobile layout */
 @media screen and (max-width: 768px) {
+
+    #return-btn {
+        top: 10px;
+        right: 120px;
+        z-index: 1001;
+    }
+
     body {
         margin: 0;
         padding: 0;

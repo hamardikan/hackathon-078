@@ -1,8 +1,482 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap') */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-*{
+/* Reset and Base Styles */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('./assets/background/background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Header Styles */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+    background-color: rgb(21, 136, 224);
+}
+
+/* Logo Styles */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo h2 {
+    font-size: 1.8em;
+    color: #fff;
+    user-select: none;
+}
+
+.logo img {
+    width: 45px;
+    height: auto;
+}
+
+/* Navigation Styles */
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.welcome-text {
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-right: 15px;
+}
+
+/* Button Styles */
+.btnLogin-popup {
+    width: 130px;
+    height: 45px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    transition: .3s ease;
+}
+
+.btnLogin-popup:hover {
+    background: #fff;
+    color: rgb(21, 136, 224);
+}
+
+.btnLogin-popup.play-game {
+    background: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.btnLogin-popup.play-game:hover {
+    background: #45a049;
+    border-color: #45a049;
+}
+
+.btnLogout {
+    width: 110px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+    transition: .3s ease;
+}
+
+.btnLogout:hover {
+    background: #ff3333;
+    color: #fff;
+    border-color: #ff3333;
+}
+
+/* Wrapper Styles */
+.wrapper {
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease, height .2s ease;
+}
+
+.wrapper.active-popup {
+    transform: scale(1);
+}
+
+.wrapper.active {
+    height: 520px;
+}
+
+/* Form Box Styles */
+.wrapper .form-box {
+    width: 100%;
+    padding: 40px;
+}
+
+.form-box h2 {
+    font-size: 2em;
+    color: #162938;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-box.login {
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+.wrapper.active .form-box.login {
+    transition: none;
+    transform: translateX(-400px);
+}
+
+.wrapper .form-box.register {
+    position: absolute;
+    transition: none;
+    transform: translateX(400px);
+}
+
+.wrapper.active .form-box.register {
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+/* Input Box Styles */
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+    border-bottom: 2px solid #162938;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #162938;
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #162938;
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -5px;
+}
+
+/* Remember & Forgot Styles */
+.remember-forgot {
+    font-size: 0.9em;
+    color: #162938;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forgot label input {
+    accent-color: #162938;
+    margin-right: 3px;
+}
+
+.remember-forgot a {
+    color: #162938;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+/* Button Styles */
+.form-box .btn {
+    width: 100%;
+    height: 45px;
+    background: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+    transition: .3s ease;
+}
+
+.form-box .btn:hover {
+    background: #0f1d26;
+}
+
+/* Login Register Link Styles */
+.login-register {
+    font-size: 0.9em;
+    color: #162938;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+.login-register p a {
+    color: #162938;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-register p a:hover {
+    text-decoration: underline;
+}
+
+/* Close Icon Styles */
+.wrapper .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: #162938;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* Message Styles */
+#message {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 25px;
+    border-radius: 5px;
+    color: #fff;
+    display: none;
+    z-index: 1000;
+    text-align: center;
+    width: 90%;
+    max-width: 300px;
+    font-weight: 500;
+}
+
+#message.success {
+    background: #4CAF50;
+    display: block;
+}
+
+#message.error {
+    background: #f44336;
+    display: block;
+}
+
+/* Audio Controls Styles */
+#audio-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.audio-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    padding: 5px;
+    color: #fff;
+    transition: transform 0.2s ease;
+}
+
+.audio-btn:hover {
+    transform: scale(1.1);
+}
+
+#volume-slider {
+    width: 100px;
+    height: 5px;
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    outline: none;
+    transition: .2s;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .2s;
+}
+
+#volume-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 15px 20px;
+    }
+
+    .logo h2 {
+        font-size: 1.5em;
+    }
+
+    .logo img {
+        width: 35px;
+    }
+
+    .navigation {
+        gap: 15px;
+    }
+
+    .welcome-text {
+        font-size: 0.9em;
+    }
+
+    .btnLogin-popup {
+        width: 110px;
+        height: 40px;
+        font-size: 1em;
+    }
+
+    .wrapper {
+        width: 90%;
+        max-width: 400px;
+        margin: 20px;
+    }
+
+    #audio-controls {
+        bottom: 15px;
+        right: 15px;
+        padding: 8px;
+    }
+
+    #volume-slider {
+        width: 80px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    header {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .logo h2 {
+        font-size: 1.3em;
+    }
+
+    .logo img {
+        width: 30px;
+    }
+
+    .navigation {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btnLogin-popup,
+    .btnLogout {
+        width: 100px;
+        height: 35px;
+        font-size: 0.9em;
+    }
+
+    .wrapper {
+        height: 420px;
+    }
+
+    .wrapper.active {
+        height: 500px;
+    }
+
+    .form-box {
+        padding: 20px;
+    }
+
+    .form-box h2 {
+        font-size: 1.6em;
+    }
+
+    .input-box {
+        height: 45px;
+        margin: 25px 0;
+    }
+
+    #audio-controls {
+        bottom: 10px;
+        right: 10px;
+        padding: 6px;
+    }
+
+    #volume-slider {
+        width: 60px;
+    }
+
+    .audio-btn {
+        font-size: 1.2em;
+    }
 }

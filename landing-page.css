@@ -322,16 +322,21 @@ header {
 #audio-controls {
     position: fixed;
     bottom: 20px;
-    right: 20px;
-    background: rgba(255, 255, 255, 0.2);
+    left: 5px;
+    background: transparent;
     padding: 12px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     gap: 12px;
-    backdrop-filter: blur(5px);
     z-index: 1000;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: 0.4s;
+    cursor: pointer;
+}
+#audio-controls:hover{
+    background: rgb(124, 122, 122) ;
+    /*cari cara supaya jadi keliatan*/
+
 }
 
 .audio-btn {
@@ -340,7 +345,7 @@ header {
     cursor: pointer;
     font-size: 1.5em;
     padding: 5px;
-    color: #fff;
+    color: #ffffff;
     transition: transform 0.2s ease;
 }
 
@@ -351,24 +356,33 @@ header {
 #volume-slider {
     width: 100px;
     height: 5px;
+    color: #fff;
     -webkit-appearance: none;
-    background: rgba(255, 255, 255, 0.5);
+    background: transparent;
     border-radius: 5px;
     outline: none;
     transition: .2s;
+    cursor: pointer;
+}
+
+#volume-slider:hover{
+    background: white;
 }
 
 #volume-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 15px;
     height: 15px;
-    background: #fff;
+    color: transparent;
+    background:transparent;
     border-radius: 50%;
     cursor: pointer;
     transition: .2s;
 }
 
 #volume-slider::-webkit-slider-thumb:hover {
+    color: #ffff;
+    background-color: white;
     transform: scale(1.2);
 }
 

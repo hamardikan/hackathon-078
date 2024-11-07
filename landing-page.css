@@ -22,7 +22,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px;
+    padding: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,6 +32,8 @@ header {
 
 .logo {
     font-size: 1.8em;
+    position: relative;
+    left: 10px;
     color: #fff;
     user-select: none;
 }
@@ -464,4 +466,11 @@ header {
     .btn {
         height: 35px;
     }
+}
+
+.logo img {
+    width: 100px;
+    position: relative;
+    left: 183px;
+    bottom: 80px;
 }

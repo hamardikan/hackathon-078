@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rehat di Hacktiv8</title>
+    <title>Landing Page</title>
     <link rel="stylesheet" href="landing-page.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
         <nav class="navigation">
             <span id="welcome-message" class="welcome-text"></span>
             <button class="btnLogin-popup" id="mainButton">Login</button>
-            <button class="btnLogout" id="logoutButton">Logout</button>
+            <button class="btnLogout" id="logoutButton" style="display: none;">Logout</button>
         </nav>
     </header>
 
@@ -31,7 +31,7 @@
                     <label>Password</label>
                 </div>
                 <div class="remember-forgot">
-                    <label><input type="checkbox"> Remember me</label>
+                    <label><input type="checkbox" id="rememberMe"> Remember me</label>
                 </div>
                 <button type="submit" class="btn">Login</button>
                 <div class="login-register">
@@ -56,7 +56,7 @@
                     <label>Confirm Password</label>
                 </div>
                 <div class="remember-forgot">
-                    <label><input type="checkbox" required> I agree to the terms & conditions</label>
+                    <label><input type="checkbox"> I agree to the terms & conditions</label>
                 </div>
                 <button type="submit" class="btn">Register</button>
                 <div class="login-register">
@@ -67,33 +67,7 @@
     </div>
 
     <div id="message"></div>
-
+    
     <script src="landing-page.js"></script>
-    <script>
-        // Safe storage check
-        function checkAuth() {
-            try {
-                const sessionUser = sessionStorage.getItem('currentUser');
-                const rememberedUser = localStorage.getItem('rememberedUser');
-                
-                if (!sessionUser && !rememberedUser) {
-                    window.location.href = 'landing-page.html';
-                } else {
-                    // Validate JSON format
-                    const user = sessionUser ? JSON.parse(sessionUser) : JSON.parse(rememberedUser);
-                    if (!user || !user.username) {
-                        // Invalid user data
-                        sessionStorage.removeItem('currentUser');
-                        localStorage.removeItem('rememberedUser');
-                        window.location.href = 'landing-page.html';
-                    }
-                }
-            } catch (e) {
-                console.error('Auth check error:', e);
-                window.location.href = 'landing-page.html';
-            }
-        }
-        checkAuth();
-    </script>
 </body>
 </html>

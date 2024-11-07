@@ -27,6 +27,7 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index: 99;
+    background-color: rgb(21, 136, 224);
 }
 
 .logo {

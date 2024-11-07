@@ -19,6 +19,7 @@
             <span id="welcome-message" class="welcome-text"></span>
             <button class="btnLogin-popup" id="mainButton">Login</button>
             <button class="btnLogout" id="logoutButton" style="display: none;">Logout</button>
+            <button class="btnTutorial">Tutorial</button>
         </nav>
     </header>
 
@@ -71,8 +72,78 @@
             </form>
         </div>
     </div>
-
     <div id="message"></div>
+
+    <div class="tutorial-wrapper">
+        <div class="tutorial-content">
+            <span class="tutorial-close">×</span>
+            <h1>How to Play</h1>
+
+            <div class="tutorial-section">
+                <h2>Get Your Snacks & Beverages!</h2>
+                <p>Rehat adalah permainan sederhana yang didesain untuk menyimulasikan pembelian makanan dan minuman
+                    ringan.</p>
+            </div>
+
+            <div class="tutorial-section">
+                <h2>Navigasi Tombol</h2>
+                <table class="controls-table">
+                    <tr>
+                        <td><span class="kbd">W</span></td>
+                        <td>Berjalan ke atas</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kbd">S</span></td>
+                        <td>Berjalan ke bawah</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kbd">D</span></td>
+                        <td>Berjalan ke kanan</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kbd">A</span></td>
+                        <td>Berjalan ke kiri</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kbd">I</span></td>
+                        <td>Membuka inventory</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kbd">E</span></td>
+                        <td>Melakukan interaksi</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="tutorial-section">
+                <h2>Uang Saku</h2>
+                <p>Uang saku akan dimulai dari $100. Uang tersebut adalah uang yang kamu pegang saat ini. Kamu bisa
+                    membeli item sebanyak apapun selama tidak melebihi harga item di Shop. Kamu juga bisa ke ATM untuk
+                    menambah ataupun menyisihkan jumlahnya di rekening. Terus pantau jumlah uang sakumu ya! Jangan
+                    sampai bokek karena jajan terus!</p>
+            </div>
+
+            <div class="tutorial-section">
+                <h2>Inventory</h2>
+                <p>Kamu akan memiliki inventory kosong di awal permainan. Inventory akan berubah seiring banyaknya item
+                    yang kamu beli. item yang muncul di inventory-mu bisa langsung kamu konsumsi. Tekan Use untuk
+                    memakai item-mu. Cek selalu inventory-mu untuk melihat apa saja yang telah kamu beli!</p>
+            </div>
+
+            <div class="tutorial-section">
+                <h2>Shop</h2>
+                <p>Tiap shop menyediakan berbagai jenis makanan maupun minuman yang berbeda. Klik Buy untuk membeli item
+                    yang kamu inginkan. Pastikan uangmu cukup untuk membelinya ya!</p>
+            </div>
+
+            <div class="tutorial-section">
+                <h2>ATM</h2>
+                <p>Kamu bisa menarik dan menaruh uang kamu di sini! Uang di rekeningmu dimulai dari $1000. Masukkan
+                    jumlah uang yang ingin kamu simpan di rekening lalu tekan Deposit. Apabila kamu mau mengambil uang,
+                    masukkan jumlahnya lalu tekan Withdraw</p>
+            </div>
+        </div>
+    </div>
 
     <script src="landing-page.js"></script>
     <script src="audio.js"></script>

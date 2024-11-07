@@ -6,7 +6,7 @@ if (!isLandingPage) {
     try {
         const sessionUser = sessionStorage.getItem('currentUser');
         const rememberedUser = localStorage.getItem('rememberedUser');
-        
+
         if (!sessionUser && !rememberedUser) {
             window.location.href = 'landing-page.html';
         } else {
@@ -40,6 +40,31 @@ if (!isLandingPage) {
     const rememberMeCheckbox = document.getElementById('rememberMe');
     const loginUsername = document.getElementById('loginUsername');
     const loginPassword = document.getElementById('loginPassword');
+    const tutorialButton = document.querySelector('.btnTutorial');
+    const tutorialWrapper = document.querySelector('.tutorial-wrapper');
+    const tutorialClose = document.querySelector('.tutorial-close');
+
+    // Tutorial popup handlers
+    if (tutorialButton && tutorialWrapper) {
+        tutorialButton.addEventListener('click', () => {
+            tutorialWrapper.classList.add('active');
+        });
+    }
+
+    if (tutorialClose && tutorialWrapper) {
+        tutorialClose.addEventListener('click', () => {
+            tutorialWrapper.classList.remove('active');
+        });
+    }
+
+    // Close tutorial when clicking outside
+    if (tutorialWrapper) {
+        tutorialWrapper.addEventListener('click', (e) => {
+            if (e.target === tutorialWrapper) {
+                tutorialWrapper.classList.remove('active');
+            }
+        });
+    }
 
     // Message display
     function showMessage(text, type) {
@@ -58,7 +83,7 @@ if (!isLandingPage) {
             if (!rememberMeCheckbox || !rememberMeCheckbox.checked) {
                 return;
             }
-            
+
             const credentials = {
                 username: username,
                 password: password,
@@ -76,25 +101,25 @@ if (!isLandingPage) {
         try {
             const savedCredentials = localStorage.getItem('userCredentials');
             console.log('Loading saved credentials:', savedCredentials);
-            
+
             if (savedCredentials) {
                 const credentials = JSON.parse(savedCredentials);
-                
+
                 if (loginUsername && credentials.username) {
                     loginUsername.value = credentials.username;
                     console.log('Username loaded:', credentials.username);
                 }
-                
+
                 if (loginPassword && credentials.password) {
                     loginPassword.value = credentials.password;
                     console.log('Password loaded');
                 }
-                
+
                 if (rememberMeCheckbox) {
                     rememberMeCheckbox.checked = true;
                     console.log('Checkbox checked');
                 }
-                
+
                 return true;
             }
         } catch (err) {
@@ -121,7 +146,7 @@ if (!isLandingPage) {
         mainButton.textContent = 'Login';
         mainButton.classList.remove('play-game');
         logoutButton.style.display = 'none';
-        mainButton.onclick = function() {
+        mainButton.onclick = function () {
             wrapper.classList.add('active-popup');
             loadCredentials();
         };
@@ -132,7 +157,7 @@ if (!isLandingPage) {
         mainButton.textContent = 'Play Game';
         mainButton.classList.add('play-game');
         logoutButton.style.display = 'block';
-        mainButton.onclick = function(e) {
+        mainButton.onclick = function (e) {
             e.preventDefault();
             window.location.href = 'index.html';
         };
@@ -143,16 +168,16 @@ if (!isLandingPage) {
         console.log('Login form found, loading credentials...');
         loadCredentials();
 
-        loginForm.addEventListener('submit', function(e) {
+        loginForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const username = loginUsername.value;
             const password = loginPassword.value;
-            
+
             try {
                 const users = JSON.parse(localStorage.getItem('users') || '[]');
                 const user = users.find(u => u.username === username && u.password === password);
-                
+
                 if (user) {
                     const userData = {
                         username: user.username,
@@ -160,9 +185,9 @@ if (!isLandingPage) {
                     };
 
                     sessionStorage.setItem('currentUser', JSON.stringify(userData));
-                    
+
                     console.log('Remember Me checked:', rememberMeCheckbox?.checked);
-                    
+
                     if (rememberMeCheckbox?.checked) {
                         localStorage.setItem('rememberedUser', JSON.stringify(userData));
                         saveCredentials(username, password);
@@ -187,7 +212,7 @@ if (!isLandingPage) {
 
     // Remember me checkbox handler
     if (rememberMeCheckbox) {
-        rememberMeCheckbox.addEventListener('change', function() {
+        rememberMeCheckbox.addEventListener('change', function () {
             if (!this.checked) {
                 clearCredentials();
                 console.log('Credentials cleared (Remember Me unchecked manually)');
@@ -197,9 +222,9 @@ if (!isLandingPage) {
 
     // Register form handler
     if (registerForm) {
-        registerForm.addEventListener('submit', function(e) {
+        registerForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const username = document.getElementById('registerUsername').value;
             const password = document.getElementById('registerPassword').value;
             const confirmPassword = document.getElementById('confirmPassword').value;

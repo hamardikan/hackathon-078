@@ -1,13 +1,18 @@
-// Create audio manager
 class AudioManager {
     constructor() {
-        this.bgm = new Audio('./assets/audio/Aves - Coffee Stop.mp3');
+        this.bgm = new Audio('./assets/audio/04 - Hey, it\'s Your Turn!.mp3');
         this.bgm.loop = true;
-        this.bgm.volume = 0.5; // Set default volume to 50%
+        this.bgm.volume = 0.5;
         this.isMuted = false;
         
-        // Initialize audio controls
+        // Create controls first
         this.createAudioControls();
+        
+        // Try to play immediately
+        this.bgm.play().catch(error => {
+            console.log("Autoplay failed, waiting for user interaction:", error);
+            document.addEventListener('click', () => this.bgm.play(), { once: true });
+        });
     }
 
     createAudioControls() {
@@ -22,25 +27,11 @@ class AudioManager {
         `;
         document.body.appendChild(controls);
 
-        // Add event listeners
         const toggleBtn = document.getElementById('toggle-music');
         const volumeSlider = document.getElementById('volume-slider');
 
         toggleBtn.addEventListener('click', () => this.toggleMusic());
         volumeSlider.addEventListener('input', (e) => this.setVolume(e.target.value / 100));
-    }
-
-    playMusic() {
-        const playPromise = this.bgm.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.log("Autoplay prevented:", error);
-            });
-        }
-    }
-
-    pauseMusic() {
-        this.bgm.pause();
     }
 
     toggleMusic() {
@@ -52,12 +43,12 @@ class AudioManager {
             this.bgm.volume = document.getElementById('volume-slider').value / 100;
             musicOn.style.display = 'inline';
             musicOff.style.display = 'none';
-            this.playMusic();
+            this.bgm.play();
         } else {
             this.bgm.volume = 0;
             musicOn.style.display = 'none';
             musicOff.style.display = 'inline';
-            this.pauseMusic();
+            this.bgm.pause();
         }
         
         this.isMuted = !this.isMuted;
@@ -70,10 +61,5 @@ class AudioManager {
     }
 }
 
-// Initialize audio manager
+// Create the audio manager as soon as the script loads
 const audioManager = new AudioManager();
-
-// Auto-play music on user interaction
-document.addEventListener('keydown', () => {
-    audioManager.playMusic();
-}, { once: true });

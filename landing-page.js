@@ -1,5 +1,5 @@
 // First, check if we're on the landing page
-const isLandingPage = window.location.pathname.includes('landing-page');
+const isLandingPage = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/');
 
 // Auth check for non-landing pages
 if (!isLandingPage) {
@@ -8,7 +8,7 @@ if (!isLandingPage) {
         const rememberedUser = localStorage.getItem('rememberedUser');
 
         if (!sessionUser && !rememberedUser) {
-            window.location.href = 'landing-page.html';
+            window.location.href = 'index.html';
         } else {
             // Validate JSON format
             const user = sessionUser ? JSON.parse(sessionUser) : JSON.parse(rememberedUser);
@@ -16,14 +16,14 @@ if (!isLandingPage) {
                 // Invalid user data
                 sessionStorage.removeItem('currentUser');
                 localStorage.removeItem('rememberedUser');
-                window.location.href = 'landing-page.html';
+                window.location.href = 'index.html';
             }
         }
     } catch (e) {
         console.error('Auth check error:', e);
         sessionStorage.removeItem('currentUser');
         localStorage.removeItem('rememberedUser');
-        window.location.href = 'landing-page.html';
+        window.location.href = 'index.html';
     }
 } else {
     // Landing page code
@@ -159,7 +159,7 @@ if (!isLandingPage) {
         logoutButton.style.display = 'block';
         mainButton.onclick = function (e) {
             e.preventDefault();
-            window.location.href = 'index.html';
+            window.location.href = 'game.html';
         };
     }
 

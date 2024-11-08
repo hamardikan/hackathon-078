@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rehat di Hacktiv8</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Basic favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+
+    <!-- PNG versions for modern browsers -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+
+    <!-- For iOS devices -->
+    <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+</head>
+
+<body>
+    <div id="game-container">
+        <div id="player" class="facing-down"></div>
+        <div id="interaction-prompt">Press E to interact</div>
+        <div id="money-display">Money: $100</div>
+        <div id="inventory-btn">Inventory (I)</div>
+
+        <div id="return-btn">Return to Menu</div>
+
+        <div id="shop-interface">
+            <div class="interface-header">
+                <h3>Shop</h3>
+                <button class="close-btn">✕</button>
+            </div>
+            <div class="item-list" id="shop-items">
+                <!-- Shop items will be populated here -->
+            </div>
+        </div>
+
+        <div id="inventory-interface">
+            <div class="interface-header">
+                <h3>Inventory</h3>
+                <button class="close-btn">✕</button>
+            </div>
+            <div class="item-list" id="inventory-items">
+                <!-- Inventory items will be populated here -->
+            </div>
+        </div>
+
+        <div id="atm-interface">
+            <div class="interface-header">
+                <h3>ATM</h3>
+                <button class="close-btn">✕</button>
+            </div>
+            <div class="atm-balance">Bank Balance: $<span id="bank-balance">0</span></div>
+            <input type="number" id="atm-amount" class="atm-input" placeholder="Enter amount">
+            <div style="display: flex; justify-content: center; gap: 10px;">
+                <button class="atm-btn" onclick="withdraw()">Withdraw</button>
+                <button class="atm-btn" onclick="deposit()">Deposit</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="mobile-control.js"></script>
+    <script src="game.js"></script>
+    <script src="shop.js"></script>
+    <script src="audio.js"></script>
+
+</body>
+
+</html>

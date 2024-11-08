@@ -313,5 +313,5 @@ document.addEventListener('visibilitychange', () => {
 const returnBtn = document.getElementById('return-btn');
 
 returnBtn.addEventListener('click', () => {
-    window.location.href = 'landing-page.html';
+    window.location.href = 'index.html';
 });
